@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.weslin.workshopmongo.domain.Post;
 import com.weslin.workshopmongo.domain.User;
+import com.weslin.workshopmongo.dto.AuthorDTO;
 import com.weslin.workshopmongo.repository.PostRepository;
 import com.weslin.workshopmongo.repository.UserRepository;
 
@@ -31,16 +32,20 @@ public class Instantiation implements CommandLineRunner{
 		userRepository.deleteAll();
 		postRepository.deleteAll();
 		
-		User maria = new User(null, "Maria Brown", "maria@gmail.com");
-		User alex = new User(null, "Alex Green", "alex@gmail.com");
-		User bob = new User(null, "Bob Grey", "bob@gmail.com");
+		User nerylda = new User(null, "Nerylda", "tetosolar@gmail.com");
+		User enzin = new User(null, "Enzoido", "cariocafudido@gmail.com");
+		User clebin = new User(null, "CobGamer", "clebin@gmail.com");
 		
-		Post post1 = new Post(null, sdf.parse("21/03/2018"), "Partiu viagem", "Vou viajar para São Paulo. Abraços!", maria);
-		Post post2 = new Post(null, sdf.parse("23/03/2018"), "Bom dia", "Acordei feliz hoje!", maria);
+		userRepository.saveAll(Arrays.asList(nerylda, enzin, clebin));
+		
+		Post post1 = new Post(null, sdf.parse("10/06/2021"), "Twittando Parte 1", "Estou twittando", new AuthorDTO(nerylda));
+		Post post2 = new Post(null, sdf.parse("10/06/2021"), "Twittando Parte 2", "Acordei, vou twittar", new AuthorDTO(nerylda));
+		Post post3 = new Post(null, sdf.parse("10/06/2021"), "Galo", "GALUDO GALUDO GALUDO GALUDO", new AuthorDTO(clebin));
+		Post post4 = new Post(null, sdf.parse("10/06/2021"), "Para o Weslin", "Te amo meu nego", new AuthorDTO(clebin));
+		Post post5 = new Post(null, sdf.parse("12/06/2021"), "FLU x FLA", "Tenho que concordar, FLA >>> FLU", new AuthorDTO(enzin));
 
 		
-		userRepository.saveAll(Arrays.asList(maria, alex, bob));
-		postRepository.saveAll(Arrays.asList(post1, post2));
+		postRepository.saveAll(Arrays.asList(post1, post2, post3, post4, post5));
 	}
 
 }
