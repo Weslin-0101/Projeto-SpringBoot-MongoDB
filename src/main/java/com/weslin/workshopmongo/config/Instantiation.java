@@ -46,6 +46,12 @@ public class Instantiation implements CommandLineRunner{
 
 		
 		postRepository.saveAll(Arrays.asList(post1, post2, post3, post4, post5));
+		
+		nerylda.getPosts().addAll(Arrays.asList(post1, post2));
+		enzin.getPosts().addAll(Arrays.asList(post5));
+		clebin.getPosts().addAll(Arrays.asList(post3, post5));
+		
+		userRepository.saveAll(Arrays.asList(nerylda, enzin, clebin));
 	}
 
 }
